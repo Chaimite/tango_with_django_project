@@ -20,7 +20,7 @@ from django.conf.urls import include
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^admin/', include('rango.urls')),
+    url(r'^rango/', include('rango.urls')),
     #above maps anys URLs starting
     #with rango/ to be handled by
     #the rango application
