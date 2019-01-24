@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% load staticfiles%} <!-- New line-->
+<html>
+
+	<head>
+		<title>About</title>
+	</head>
+	<body>
+		<h1>Rango says...</h1>
+		<div>
+			This tutorial as been put together by Adriano <br />
+			<strong>{{ boldmessage }}</strong><br />
+		</div>
+		<div>
+			<br />
+			<img src="{% static "images/cat.jpg"%}"
+			    alt= "Picture of a cat with a lizard" s/><!-- New line -->
+		</div>
+	</body>
+</html>
