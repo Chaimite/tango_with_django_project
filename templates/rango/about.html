@@ -8,13 +8,17 @@
 	<body>
 		<h1>Rango says...</h1>
 		<div>
-			This tutorial as been put together by Adriano <br />
+			 hey there partner! <br />
 			<strong>{{ boldmessage }}</strong><br />
 		</div>
 		<div>
-			<br />
-			<img src="{% static "images/cat.jpg"%}"
-			    alt= "Picture of a cat with a lizard" s/><!-- New line -->
+
+			<a href="/rango"> Index</a><br />
+
+			
+			<img src="{{ MEDIA_URL}}cat.jpg"
+			alt="Picture of a cat" />
+			    <!-- New line -->
 		</div>
 	</body>
 </html>
