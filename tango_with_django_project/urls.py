@@ -25,8 +25,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^rango/', include('rango.urls')),
-    #above maps anys URLs starting
-    #with rango/ to be handled by
-    #the rango application
+    url(r'^$', views.index, name='index'),
+    url(r'^about/$', views.about, name='about'),
+    url(r'^category/(?P<category_name_slug>[\w\-]+)/$',
+        views.show_category, name='show_category'),
     url(r'^admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
