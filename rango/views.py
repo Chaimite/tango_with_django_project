@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from rango.models import Category, Page
 from django.shortcuts import render
-from rango.forms import CategoryFrom
-from rango.forms import PageForm
+from rango.forms import CategoryFrom, PageForm, UserForm, UserProfileForm
+
 
 # Create your views here.
 def index(request):
@@ -69,3 +69,44 @@ def add_page(request, category_name_slug):
             print(form.errors)
     context_dict = {'form': form, 'category': category}
     return render(request, 'rango/add_page.html', context_dict)
+
+def register(request):
+    # Sets register to False initially
+    registered = False
+
+    if request.method == 'POST':
+        # Attempt to grab information from the raw form information.
+        # Note that we make use of both UserForm and UserProfileForm
+        user_form = UserForm(data=request.POST)
+        profile_form = UserProfileForm(data=request.POST)
+
+        # If the two forms are valid...
+        if user_form.is_valid() and profile_form.is_valid():
+            # Save the user's form data to the database.
+            user = user_form.save()
+            # Hash pssword
+            user.set_password(user.password)
+            user.save()
+
+            profile = profile_form.save(commit=False)
+            profile.user = user
+
+            if 'picture' in request.FILES:
+                profile.picture = request.FILES['picture']
+
+            profile.save()
+
+
+            # Update registration variable
+            registered = True
+        else:
+            # Invalid form or forms
+            # Print problems to the terminal.
+            print (user_form.errors, profile_form.errors)
+    else:
+        # Not a HTTP POST, so we render our form using two ModelForms
+        # These forms will be blank, ready for user input.
+        user_form = UserForm
+        profile_form = UserProfileForm()
+
+    return render(request, 'rango/register.html', {'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
