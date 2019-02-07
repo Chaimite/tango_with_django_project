@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-{% load staticfiles%} <!-- New line-->
-<html>
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
 
-	<head>
-		<title>Rango</title>
-	</head>
-	<body>
+{% block title_block %}
+About
+{% endblock %}
+
+{% block body_block %}
+
+
+
 		<h1>Rango says here is the about page</h1>
 		<div>
 			 hey there partner! <br />
@@ -20,5 +23,4 @@
 			alt="Picture of a cat" />
 			    <!-- New line -->
 		</div>
-	</body>
-</html>
+{% endblock %}
