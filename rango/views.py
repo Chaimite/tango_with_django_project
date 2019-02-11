@@ -1,12 +1,13 @@
 from django.http import HttpResponse
 from rango.models import Category, Page
 from django.shortcuts import render
-from rango.forms import CategoryFrom, PageForm, UserForm, UserProfileForm
+from rango.forms import PageForm, UserForm, UserProfileForm, CategoryForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
+
 
 
 # Create your views here.
@@ -51,10 +52,10 @@ def show_category(request, category_name_slug):
     return render(request, 'rango/category.html', context_dict)
 
 def add_category(request):
-    form = CategoryFrom(request.POST)
+    form = CategoryForm(request.POST)
 
     if request.method == 'POST':
-        form = CategoryFrom(request.POST)
+        form = CategoryForm(request.POST)
 
         if form.is_valid():
             form.save(commit=True)
