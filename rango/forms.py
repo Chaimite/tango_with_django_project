@@ -39,7 +39,7 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('website', 'picture')
-        
+
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
     class Meta:
